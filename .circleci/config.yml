@@ -10,7 +10,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: apt-get install -y sudo
+      - run: sudo apt-get install -y sudo
       - run: npm install
       - run:
           name: Install npm-cli-login
