@@ -11,6 +11,10 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: npm install
+      - run:
+          name: Install npm-cli-login
+          command: |
+            npm install -g npm-cli-login
       - save_cache:
           paths:
             - node_modules
@@ -18,7 +22,7 @@ jobs:
       - run:
           name: Publish to npm
           command: |
-            echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > ~/repo/.npmrc
+            npm-cli-login -u shivanshvij -p $GITHUB_TOKEN -e shivanshvij@outlook.com -r https://npm.pkg.github.com --quotes
             npm publish
 workflows:
   version: 2
