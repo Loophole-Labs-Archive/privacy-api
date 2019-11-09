@@ -16,7 +16,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-        name: Publish to npm
+          name: Publish to npm
           command: |
             echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > ~/.npmrc
             npm publish
