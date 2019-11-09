@@ -24,7 +24,8 @@ console.log(response.data);
 
 ### Available Functions
 
-> list_cards
+ - list_cards(page, page_size, begin, end, card_token) &#8594; Lists all available cards for this user
+   - https://developer.privacy.com/docs#endpoints-list-cards
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
