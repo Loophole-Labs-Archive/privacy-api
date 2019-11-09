@@ -1,0 +1,43 @@
+# Javascript Node CircleCI 2.0 configuration file
+jobs:
+  publish:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+        name: Publish to npm
+          command: |
+            echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > ~/.npmrc
+            npm publish
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            npm publish
+workflows:
+  version: 2
+  production-publish:
+    jobs:
+      - hold:
+          type: approval
+          filters:
+            tags:
+              only: /^\d+(\.\d+)*$/
+            branches:
+              ignore: /.*/
+      - publish:
+          requires:
+            - hold
+          filters:
+            tags:
+              only: /^\d+(\.\d+)*$/
+            branches:
+              ignore: /.*/
