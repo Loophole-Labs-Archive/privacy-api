@@ -1,6 +1,6 @@
 # Javascript Node CircleCI 2.0 configuration file
 jobs:
-  publish:
+  publish-github:
     docker:
       - image: circleci/node:lts
     working_directory: ~/repo
@@ -20,8 +20,8 @@ jobs:
           command: |
             echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > ~/repo/.npmrc
             npm publish
-            echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/repo/.npmrc
-            npm publish
+            # echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/repo/.npmrc
+            # npm publish
 workflows:
   version: 2
   production-publish:
