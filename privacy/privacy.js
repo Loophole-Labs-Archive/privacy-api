@@ -286,7 +286,7 @@ class privacy {
 
     }
 
-    async hosted_card(api_key, card_uuid, css_url){
+    async hosted_card_ui(api_key, card_uuid, css_url){
         let options = this.embed_request(api_key.toString(), card_uuid.toString(), css_url.toString());
 
         let url = '/embed/card?';
