@@ -1,9 +1,11 @@
 # Javascript Node CircleCI 2.0 configuration file
+version: 2
+
 jobs:
-  publish-github:
+  prepare:
     docker:
       - image: circleci/node:lts
-    working_directory: ~/
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
@@ -11,19 +13,27 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: npm install
-      - run:
-          name: Install npm-cli-login
-          command: |
-            sudo npm install -g npm-cli-login
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+  publish-github:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
-          name: Publish to npm
-          command: |
-            npm-cli-login -u shivanshvij -p $GITHUB_TOKEN -e shivanshvij@outlook.com -r https://npm.pkg.github.com --quotes
-            npm publish
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+  
 workflows:
   version: 2
   production-publish:
@@ -35,9 +45,16 @@ workflows:
               only: /^\d+(\.\d+)*$/
             branches:
               ignore: /.*/
+      - prepare:
+          filters:
+            tags:
+              only: /^\d+(\.\d+)*$/
+            branches:
+              ignore: /.*/
       - publish-github:
           requires:
             - hold
+            - prepare
           filters:
             tags:
               only: /^\d+(\.\d+)*$/
