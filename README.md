@@ -22,6 +22,10 @@ let response = await privacy_api.list_cards();
 console.log(response.data);
 ```
 
+### Available Functions
+
+> list_cards
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
