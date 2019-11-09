@@ -22,10 +22,13 @@ let response = await privacy_api.list_cards();
 console.log(response.data);
 ```
 
-### Available Functions
+## Available Functions
 
- - `list_cards(page, page_size, begin, end, card_token)` &#8594; Lists all available cards for this user [Documentation](https://developer.privacy.com/docs#endpoints-list-cards)
- - `list_transactions(approval_status, page, page_size, begin, end, card_token, transaction_token)` &#8594; Lists all transactions for the given `approval_status` [Documentation](https://developer.privacy.com/docs#endpoints-list-transactions)
+### `list_cards(page, page_size, begin, end, card_token)` 
+[Lists all available cards for this user](https://developer.privacy.com/docs#endpoints-list-cards)
+
+### `list_transactions(approval_status, page, page_size, begin, end, card_token, transaction_token)`
+Lists all transactions for the given `approval_status` [Documentation](https://developer.privacy.com/docs#endpoints-list-transactions)
  - `create_card(type, memo, spend_limit, spend_limit_duration)` &#8594; Creates a card for this user [Documentation](https://developer.privacy.com/docs#endpoints-create-card)
  - `list_cards(page, page_size, begin, end, card_token)` &#8594; Lists all available cards for this user [Documentation](https://developer.privacy.com/docs#endpoints-list-cards)
 ## Contributing
