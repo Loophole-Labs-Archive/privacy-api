@@ -3,7 +3,7 @@ jobs:
   publish-github:
     docker:
       - image: circleci/node:lts
-    working_directory: ~/repo
+    working_directory: ~/
     steps:
       - checkout
       - restore_cache:
@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Publish to npm
           command: |
-            npm-cli-login -u shivanshvij -p $GITHUB_TOKEN -e shivanshvij@outlook.com -r https://npm.pkg.github.com --quotes --config-path="~/repo"
+            npm-cli-login -u shivanshvij -p $GITHUB_TOKEN -e shivanshvij@outlook.com -r https://npm.pkg.github.com --quotes
             npm publish
 workflows:
   version: 2
