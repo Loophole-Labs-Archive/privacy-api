@@ -1,4 +1,8 @@
-# Privacy API
+# Privacy API 
+[![CircleCI](https://circleci.com/gh/ShivanshVij/privacy-api.svg?style=svg)](https://circleci.com/gh/ShivanshVij/privacy-api) [!NPM](https://img.shields.io/npm/l/privacy-api)
+
+[![NPM](https://nodei.co/npm/privacy-api.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/privacy-api/)
+[![NPM](https://nodei.co/npm-dl/privacy-api.png?height=3)](https://nodei.co/npm/privacy-api/)
 
 Privacy API is an NPM Package for for communicating with the privacy.com API
 
