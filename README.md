@@ -19,9 +19,9 @@ $ npm install privacy-api
 Responses are returned as standard [axios responses](https://github.com/axios/axios#response-schema)
 
 Constructor: `privacy(API_KEY, sandbox = true, version = 1)`
-    - `API_KEY`: Your developer environment API Key
-    - `sandbox`: Whether you want to use the sandbox API or the production API
-    - `version`: The API version to use (currently only supports version 1)
+- `API_KEY`: Your developer environment API Key
+- `sandbox`: Whether you want to use the sandbox API or the production API
+- `version`: The API version to use (currently only supports version 1)
 
 ```javascript
 const privacy = require('privacy-api');

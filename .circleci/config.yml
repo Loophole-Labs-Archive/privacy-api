@@ -44,15 +44,13 @@ workflows:
             tags:
               only: /^\d+(\.\d+)*$/
             branches:
-              only:
-                - master
+              ignore: /.*/
       - prepare:
           filters:
             tags:
               only: /^\d+(\.\d+)*$/
             branches:
-              only:
-                - master
+              ignore: /.*/
       - publish:
           requires:
             - hold
@@ -61,5 +59,4 @@ workflows:
             tags:
               only: /^\d+(\.\d+)*$/
             branches:
-              only:
-                - master
+              ignore: /.*/
