@@ -1,6 +1,6 @@
 {
   "name": "privacy-api",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An NPM package for communicating with the Privacy API",
   "main": "privacy/privacy.js",
   "scripts": {
