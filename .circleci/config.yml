@@ -20,6 +20,19 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+  publish-npm:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Authenticate with npm registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package on npm
+          command: npm publish
   publish-github:
     docker:
       - image: circleci/node:lts
@@ -28,10 +41,10 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+          name: Authenticate with github registry
+          command: echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > ~/repo/.npmrc
       - run:
-          name: Publish package
+          name: Publish package on github
           command: npm publish
   
 workflows:
@@ -46,6 +59,15 @@ workflows:
             branches:
               ignore: /.*/
       - prepare:
+          filters:
+            tags:
+              only: /^\d+(\.\d+)*$/
+            branches:
+              ignore: /.*/
+      - publish-npm:
+          requires:
+            - hold
+            - prepare
           filters:
             tags:
               only: /^\d+(\.\d+)*$/

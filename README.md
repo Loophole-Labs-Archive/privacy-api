@@ -7,7 +7,7 @@ Privacy API is an NPM Package for for communicating with the privacy.com API
 Use the package manager [npm](https://www.npmjs.com/get-npm) to install `privacy-api`.
 
 ```bash
-npm install privacy-api
+$ npm install privacy-api
 ```
 
 ## Usage
