@@ -10,7 +10,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: sudo apt-get install -y sudo
       - run: npm install
       - run:
           name: Install npm-cli-login
@@ -23,7 +22,7 @@ jobs:
       - run:
           name: Publish to npm
           command: |
-            npm-cli-login -u shivanshvij -p $GITHUB_TOKEN -e shivanshvij@outlook.com -r https://npm.pkg.github.com --quotes
+            npm-cli-login -u shivanshvij -p $GITHUB_TOKEN -e shivanshvij@outlook.com -r https://npm.pkg.github.com --quotes --config-path="~/repo"
             npm publish
 workflows:
   version: 2
