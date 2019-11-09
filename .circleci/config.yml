@@ -18,9 +18,13 @@ jobs:
       - run:
           name: Publish to npm
           command: |
-            echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > ~/.npmrc
+            cat $GITHUB_TOKEN
+            echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+            cat .npmrc
             npm publish
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            cat $NPM_TOKEN
+            echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+            cat .npmrc
             npm publish
 workflows:
   version: 2
